@@ -2,12 +2,12 @@
 
 namespace webapi.App
 {
-    public class ChatHub : Hub
+    public sealed class ChatHub : Hub
     {
-        public override async Task<string> OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             await Clients.All.SendAsync("ReceiveMessage", "is online");
-            return Context.ConnectionId;
+            Console.WriteLine($"Connectionid :: {Context.ConnectionId}");
         }
     }
 }
